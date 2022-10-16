@@ -1,0 +1,179 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Dashboard</title>
+    <style>
+        .detailbox1
+
+        {
+            position:absolute;
+            background-color:white;
+            padding:3px 6px;
+            margin:1px 1px;
+            border:1px solid blueviolet;
+            color:blueViolet;
+            font:Arial;
+        }
+
+        .name1
+        {
+            position:absolute;
+            left:10%;
+            background-color:none;
+            padding:3px 6px;
+            margin:1px 1px;
+            color:#A9A9A9;
+        }
+
+        table,td,th{
+            border: 1px solid black;
+            font-family:Calibri;
+            text-align:Center;
+        }
+        table{
+            border-collapse: collapse;
+            width:40%;
+            top:10%;
+            margin:1px 1px;
+            padding:3px 6px;
+        }
+        th{
+            background-color: blue;
+            padding:5px;
+            color:white;
+        }
+            td{
+            padding:5px;
+        }
+
+        .detailbox2
+
+        {
+            position:absolute;
+            background-color:white;
+            padding:3px 6px;
+            margin:1px 1px;
+            border:1px solid blueviolet;
+            color:blueViolet;
+            font:Arial;
+        }
+
+        .name2
+        {
+            position:absolute;
+            left:10%;
+            background-color:none;
+            padding:3px 6px;
+            margin:1px 1px;
+            color:#A9A9A9;
+        }
+
+        table,td,th{
+            border: 1px solid black;
+            text-align:center;
+            font:Arial;
+        }
+        table{
+            border-collapse: collapse;
+            width:40%;
+            top:10%;
+            margin:1px 1px;
+            padding:3px 6px;
+        }
+        th{
+            background-color: blue;
+            padding:5px;
+            color:white;
+        }
+            td{
+            padding:5px;
+        }
+        .home-container02 {
+        top: 0px;
+        right: 1px;
+        width: 198px;
+        height: 957px;
+        display: flex;
+        position: absolute;
+        align-items: center;
+        border-color: rgba(120, 120, 120, 0.4);
+        border-style: solid;
+        border-width: 2px;
+        flex-direction: column;
+        justify-content: flex-start;
+        }
+        .home-link {
+  top: 26px;
+  left: 18px;
+  color: #6200ee;
+  position: inherit;
+  font-size: 25px;
+  text-align: center;
+  text-transform: capitalize;
+  text-decoration: underline;
+}
+.home-text {
+  top: 88px;
+  left: 10px;
+  color: rgb(2, 2, 2);
+  position: inherit;
+  font-size: 25px;
+  text-align: center;
+  text-transform: capitalize;
+}
+
+#button {
+  bottom: 0px;
+  color: rgb(255, 255, 255);
+  right: 50px;
+  text-align: center;
+  width: 102px;
+  height: 44px;
+  position: absolute;
+  font-size: 19px;
+  background-color: rgb(238, 0, 4);
+  border: #000000;
+  border-style: solid;
+}
+
+    </style>
+    </head>
+
+    <body>
+        <div class="home-container02">
+            <a
+              href="{% url 'manager_dashboard' %}"
+              rel="noreferrer noopener"
+              class="home-link"
+            >
+              Dashboard
+            </a>
+            <a href="{% url 'create_team_page' %}"
+            rel="noreferrer noopener" class="home-text">Create Team</a>
+          </div>
+        {% for pro in projects %}
+            <h1>{{ pro.project_teamleader.team_name }}</h1>
+            <a class="detailbox1" href="{% url 'team_details' pro.id %}">Details</a>
+            <p class="name1"> Leader : {{ pro.project_teamleader.name }} </p><br><br>
+
+    <table>
+        <tr>
+            <th>S.No</th>
+            <th>Name</th>
+            <th>Points</th>
+        </tr>
+            {% for tm in tms%}
+                {% if pro.project_teamleader.user_id == tm.team_of.user_id %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td><font color="blueviolet">{{ tm.name }}</font></td>
+                        <td>{{ tm.total_points }}</td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+    </table><br>
+
+        {% endfor %}
+    <a href="{% url 'logout'%}" id="button">LogOut</a>
+    </body>
+</html>

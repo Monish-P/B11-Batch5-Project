@@ -1,0 +1,156 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Details</title>
+    <style>
+
+        .Delete
+        {
+            position:absolute;
+            background-color:white;
+            right:85%;
+            padding:3px 6px;
+            margin:1px 1px;
+            border:1px solid red;
+            color:red;
+            font:Arial;
+            font-size: 9px;
+        }
+
+        table, th,td{
+            border: 1px solid black;
+            text-align:center;
+            font-family:Calibri;
+        }
+        .table1{
+            position:absolute;
+            border-collapse: collapse;
+            width:20%;
+            right:60%;
+            top:5%;
+        }
+        .table1 th{
+            background-color: blue;
+            padding:5px;
+            color:white;
+        }
+         .table1 td{
+            padding:5px;
+            color:blueviolet
+        }
+ 
+        .table2{
+            position:absolute;
+            border-collapse: collapse;
+            width:10%;
+            left:1%;
+            top:25%;
+            float:left;
+        }
+        .table2 th{
+            background-color: blue;
+            padding:5px;
+            color:white;
+        }
+        .table2 td{
+            padding:5px;
+            text-align:center;
+            color:blueviolet;
+        }
+        
+        .table3{
+            position:absolute;
+            border-collapse: collapse;
+            width:40%;
+            top:48%;
+            left:1%;
+        }
+        .table3 th{
+            background-color: blue;
+            padding:5px;
+            color:white;
+        }
+        .table3 td{
+            padding:5px;
+            color:black
+        }
+
+        .table4{
+            position:absolute;
+            border-collapse: collapse;
+            width:40%;
+            top:83%;
+            left:1%;
+        }
+        .table4 th{
+            background-color: blue;
+            padding:5px;
+            color:white;
+        }
+        .table4 td{
+            padding:5px;
+            color:black
+        }
+        .pending{
+            position: relative;
+            top: 100px;
+
+        }
+        .completed{
+            position: relative;
+            top: 180px;
+        }
+        </style>
+        </head>
+
+        <body>
+            <h1><font face="Arial" size="33">Team 1</font></h1>
+            <a class="Delete" href="{% url 'delete_team' pro.id pro.project_teamleader.id %}">DELETE TEAM</a>
+        
+       
+
+        <table class="table2">
+            <tr>
+                <th>Team Leader</th>
+            </tr>
+            <tr>
+                <td>{{ pro.project_teamleader.name }}</td>
+            </tr>
+        </table><br><br><br><br>
+        
+        <h1><font class="pending" face="Arial" size="28">Pending Tasks</font></h1>
+        
+        <table class="table3">
+            <tr>
+                <th>S.NO</th>
+                <th>Task Name</th>
+            </tr>
+            {% for task in pending_tasks %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ task.name }}</td>
+            </tr>
+            {% endfor %}
+            
+        </table><br><br><br><br><br><br>
+
+        <h1><font class = "completed" face="Arial" size="28">Tasks Completed</font></h1>
+        
+        <table class="table4">
+           
+            <tr>
+                <th>S.NO</th>
+                <th>Task Name</th>
+            </tr>
+            {% for task in completed_tasks%}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ task.name }}</td>
+            </tr>
+            {% endfor %}
+
+        </table><br>
+        
+
+    </body>
+</html>

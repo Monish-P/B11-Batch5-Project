@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add team members</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{%static 'teamleader/add_team_mem.css'%}">
+
+</head>
+<body>
+    <div>
+        <div class="home-container">
+          <div class="home-container01"></div>
+          <div class="home-container02">
+            <a
+              href="{% url 'team_leader_dashboard' tl.id %}"
+              
+              rel="noreferrer noopener"
+              class="home-link"
+            >
+              Dashboard
+            </a>
+            <a class="home-text" href="{% url 'tl_update_page' tl.id %}">UpdateDetails</a>
+            <a class="add_teammem" href="{% url 'add_teammembers_page' tl.id %}" 
+            rel="noreferrer noopener">Add Team Members</a>
+            <a class="add_task" href="{% url 'add_tasks_page' tl.id %}">Add Tasks</a>
+            <a class="approve_task" href="{% url 'approve_page' tl.id %}">Approve Tasks</a>
+          </div>
+        
+          <form class="add-team-members-form" method = "POST" action = "{% url 'add_teammembers' tl.id %}">
+            <label class="add-team-members-text1">Team member User Id:</label>
+            {% csrf_token %}
+            <input
+              type="text"
+              placeholder="placeholder"
+              class="add-team-members-textinput input"
+              name = "userid"
+            />
+            <button type="submit" class="add-team-members-button1 button">+ADD</button>
+          </form>
+        </div>
+    </div>
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+</html>

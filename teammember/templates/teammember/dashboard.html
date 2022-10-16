@@ -1,0 +1,117 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{%static 'teammember/dashboard.css'%}">
+
+</head>
+<body>
+    <div>
+        <div class="home-container">
+          <div class="home-container01"></div>
+          <div class="home-container02">
+            <a
+              href="{% url 'team_member_dashboard' tm.id %}"
+              rel="noreferrer noopener"
+              class="home-link"
+            >
+              Dashboard
+            </a>
+            <a href="{% url 'tm_update_page' tm.id %}"
+            rel="noreferrer noopener" class="home-text">UpdateDetails</a>
+          </div>
+          <div class="home-container03">
+            <div class="home-container04">
+              <span class="home-text01">S.no</span>
+              <span class="home-text02">Points</span>
+              <span class="home-text03">Name</span>
+              <span class="home-text04">Status</span>
+            </div>
+          {% for task in tasks %}
+            <div class="home-container05">
+              <div class="home-container06">
+                <span class="home-text05">
+                  <span>{{ forloop.counter }}</span>
+                  <br />
+                </span>
+              </div>
+              <div class="home-container07">
+                <a
+                  href="{% url 'task' tm.id task.id %}"
+                  rel="noreferrer noopener"
+                  class="home-link1"
+                >
+                  {{ task.name }}
+                </a>
+              </div>
+              <div class="home-container08">
+                <span class="home-text08">
+                  <span class="home-text09">{{ task.points }}</span>
+                  <br />
+                </span>
+              </div>
+              <div class="home-container09">
+                {% if task.status == 0 %}
+                  <span class="home-text11">
+                    <span class="home-text12">Pending</span>
+                    <br />
+                  </span>
+                {% endif %}
+                {% if task.status == 1 %}
+                  <span class="home-text11">
+                    <span class="home-text12">Sent for Approval</span>
+                    <br />
+                  </span>
+                {% endif %}
+                {% if task.status == 2 %}
+                  <span class="home-text11">
+                    <span class="home-text12">Successfully Completed</span>
+                    <br />
+                  </span>
+                {% endif %}
+              </div>
+            </div>
+            
+            
+          {% endfor %}
+          </div>
+          
+          <div class="home-container10">
+            <span class="home-text14">Name:</span>
+            <span class="home-text15">TeamLeader:</span>
+            <span class="home-text16">Team Name:</span>
+            <span class="home-text17">Userid:</span>
+            <span class="home-text18">Email:</span>
+            <span class="home-text19">{{ tm.name }}</span>
+            <span class="home-text20">{{ tm.team_of.name }}</span>
+            <span class="home-text21">{{ tm.team_of.team_name }}</span>
+            <span class="home-text22">{{ tm.email }}</span>
+            <span class="home-text23">{{ tm.user_id }}</span>
+          </div>
+          <div class="home-container11"></div>
+          <h1 class="home-text24">Profile</h1>
+          <div class="home-container12">
+            <h1 class="home-text25">
+              <span>Reward</span>
+              <br />
+              <span>Points:</span>
+            </h1>
+            <h1 class="home-text29">{{ tm.total_points }}</h1>
+          </div>
+          <h1 class="home-text30">Current Project:</h1>
+          <span class="home-text31">{{ pro.name }}</span>
+          <h1 class="home-text32">MyTasks:</h1>
+          <a href="{% url 'logout'%}" id="button">LogOut</a>
+        </div>
+    </div>
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+</html>

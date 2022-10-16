@@ -1,0 +1,155 @@
+.home-container {
+    width: 100%;
+    display: flex;
+    min-height: 100vh;
+    align-items: flex-start;
+    border-color: var(--dl-color-gray-black);
+    border-width: 1px;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  .home-container01 {
+    top: 1px;
+    left: 1px;
+    width: 100%;
+    border: 2px dashed rgba(120, 120, 120, 0.4);
+    height: 43px;
+    display: flex;
+    position: absolute;
+    align-items: flex-start;
+    background-color: #6200ee;
+  }
+  .home-container02 {
+    top: 43px;
+    left: 1px;
+    width: 198px;
+    height: 957px;
+    display: flex;
+    position: absolute;
+    align-items: center;
+    border-color: rgba(120, 120, 120, 0.4);
+    border-style: solid;
+    border-width: 2px;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  .home-link {
+    top: 26px;
+    left: 18px;
+    color: rgb(2, 2, 2);
+    position: absolute;
+    font-size: 25px;
+    text-align: center;
+    text-transform: capitalize;
+  }
+  .home-text {
+    top: 88px;
+    left: 10px;
+    color: rgb(2, 2, 2);
+    position: absolute;
+    font-size: 25px;
+    text-align: center;
+    text-transform: capitalize;
+  }
+  .add_teammem {
+    top: 150px;
+    width: 220px;
+    color: rgb(2, 2, 2);
+    position: absolute;
+    font-size: 22px;
+    text-align: center;
+    text-transform: capitalize;
+  }
+  .add_task {
+    top: 210px;
+    width: 220px;
+    color: rgb(98, 0, 238);
+    position: absolute;
+    font-size: 22px;
+    text-align: center;
+    text-transform: capitalize;
+    text-decoration: underline;
+  }
+  .approve_task {
+    top: 270px;
+    width: 220px;
+    color: rgb(2, 2, 2);
+    position: absolute;
+    font-size: 25px;
+    text-align: center;
+    text-transform: capitalize;
+  }
+  .add-team-members-form {
+    top: 132px;
+    right: 58px;
+    width: 898px;
+    height: 774px;
+    position: absolute;
+  }
+  .add-team-members-text1 {
+    top: 72px;
+    left: 19px;
+    color: rgb(98, 0, 238);
+    position: absolute;
+    font-size: 30px;
+  }
+  .add-team-members-text2 {
+    top: 263px;
+    left: 19px;
+    color: rgb(98, 0, 238);
+    position: absolute;
+    font-size: 30px;
+  }
+  .add-team-members-textinput {
+    top: 74px;
+    left: 222px;
+    width: 221px;
+    height: 34px;
+    position: absolute;
+  }
+  .add-team-members-textinput1 {
+    top: 136px;
+    left: 222px;
+    width: 221px;
+    height: 34px;
+    position: absolute;
+  }
+  .add-team-members-button1 {
+    left: 378px;
+    color: var(--dl-color-gray-white);
+    width: 118px;
+    bottom: 53px;
+    height: 54px;
+    position: absolute;
+    font-size: 30px;
+    background-color: rgb(98, 0, 238);
+  }
+  .add-team-members-text3 {
+    top: 202px;
+    left: 20px;
+    color: rgb(98, 0, 238);
+    position: absolute;
+    font-size: 30px;
+  }
+  .add-team-members-text4 {
+    top: 136px;
+    left: 23px;
+    color: rgb(98, 0, 238);
+    position: absolute;
+    font-size: 30px;
+  }
+  .add-team-members-select {
+    top: 208px;
+    left: 239px;
+    position: absolute;
+    border-color: var(--dl-color-gray-black);
+    border-style: double;
+    border-width: 1px;
+  }
+  .add-team-members-textarea {
+    top: 273px;
+    left: 224px;
+    width: 557px;
+    height: 301px;
+    position: absolute;
+  }

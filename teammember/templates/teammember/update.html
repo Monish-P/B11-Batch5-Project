@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Details</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{%static 'teammember/update.css'%}">
+
+</head>
+<body>
+    <div>
+        <div class="home-container">
+          <div class="home-container1"></div>
+          <div class="home-container2">
+            <a
+              href="{% url 'team_member_dashboard' tm.id %}"
+              
+              rel="noreferrer noopener"
+              class="home-link"
+            >
+              Dashboard
+            </a>
+            <a class="home-text" href="{% url 'tm_update_page' tm.id %}">UpdateDetails</a>
+          </div>
+          
+          <form class="home-form" method = "POST" action = "{% url 'tm_update' tm.id %}">
+            {% csrf_token %}
+            <label class="home-text1">Name:</label>
+            <label class="home-text2">Password:</label>
+            <label class="home-text3">Email:</label>
+            <label class="home-text4">Userid:</label>
+            <input
+              type="text"
+              placeholder="{{ tm.name }}"
+              class="home-textinput input"
+              name = "name"
+            />
+            <input
+              type="text"
+              placeholder="{{ tm.password }}"
+              class="home-textinput1 input"
+              name = "password"
+            />
+            <input
+              type="text"
+              placeholder="{{ tm.email }}"
+              class="home-textinput2 input"
+              name = "email"
+            />
+            <input
+              type="text"
+              placeholder="{{ tm.user_id }}"
+              class="home-textinput3 input"
+              name = "userid"
+            />
+            <button class="home-button1 button" type = "submit">Update</button>
+          </form>
+        </div>
+    </div>
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+</html>

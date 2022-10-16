@@ -1,0 +1,197 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{%static 'teamleader/dashboard.css'%}">
+
+</head>
+<body>
+    <div>
+        <div class="home-container">
+          <div class="home-container01"></div>
+          <div class="home-container02">
+            <a
+              href="{% url 'team_leader_dashboard' tl.id %}"
+              rel="noreferrer noopener"
+              class="home-link"
+            >
+              Dashboard
+            </a>
+            <a class="home-text" href="{% url 'tl_update_page' tl.id %}">UpdateDetails</a>
+            <a class="add_teammem" href="{% url 'add_teammembers_page' tl.id %}">Add Team Members</a>
+            <a class="add_task" href="{% url 'add_tasks_page' tl.id %}">Add Tasks</a>
+            <a class="approve_task" href="{% url 'approve_page' tl.id %}">Approve Tasks</a>
+          </div>
+        
+          <div class="tag2">
+            <div class="home-container04">
+              <span class="home-text01">S.no</span>
+              <span class="home-text02">Points</span>
+              <span class="home-text03">Name</span>
+              
+            </div>
+            {% for tm in tms %}
+            <div class="home-container05">
+              <div class="home-container06">
+                <span class="home-text05">
+                  <span>{{ forloop.counter }}</span>
+                  <br />
+                </span>
+              </div>
+              <div class="home-container07">
+                <span class="home-text05">
+                  <span>{{ tm.name }}</span>
+                  <br />
+                </span>
+              </div>
+              <div class="tag3">
+                <span class="home-text08">
+                  <span class="home-text09">{{ tm.total_points }}</span>
+                  <br />
+                </span>
+              </div>
+              
+            </div>
+            {% endfor %}
+            
+          
+          </div>
+        {% if tl.is_project_created %}
+          <h1 class="tag8">{{ project.name }}</h1>
+          <h1 class="home-text32">Pending Tasks:</h1>
+          <div class="home-container03">
+            <div class="home-container04">
+              <span class="home-text01">Id</span>
+              <span class="home-text02">Points</span>
+              <span class="home-text03">Name</span>
+              <span class="tag5">Assigned to</span>
+            </div>
+            {% for task in pend_tasks %}
+            <div class="home-container05">
+              <div class="home-container06">
+                <span class="home-text05">
+                  <span>{{ forloop.counter }}</span>
+                  <br />
+                </span>
+              </div>
+              <div class="home-container07">
+                <a
+                  href="https://example.com"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  class="home-link1"
+                >
+                  {{ task.name }} 
+                </a>
+              </div>
+              <div class="home-container08">
+                <span class="home-text08">
+                  <span class="home-text09">{{ task.points }}</span>
+                  <br />
+                </span>
+              </div>
+              <div class="tag6">
+                <span class="home-text05">
+                  <span>{{ task.assigned_to.name }}</span>
+                  <br />
+                </span>
+              </div>
+            </div>
+            
+            
+            
+          {% endfor %}
+          </div>
+          <h1 class="tag4">Tasks Completed:</h1>
+          <div class="tag7">
+            <div class="home-container04">
+              <span class="home-text01">Id</span>
+              <span class="home-text02">Points</span>
+              <span class="home-text03">Name</span>
+              <span class="tag5">Assigned to</span>
+            </div>
+            {% for task in comp_tasks %}
+            <div class="home-container05">
+              <div class="home-container06">
+                <span class="home-text05">
+                  <span>{{ forloop.counter }}</span>
+                  <br />
+                </span>
+              </div>
+              <div class="home-container07">
+                <a
+                  href="https://example.com"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  class="home-link1"
+                >
+                {{ task.name }} 
+                </a>
+              </div>
+              <div class="home-container08">
+                <span class="home-text08">
+                  <span class="home-text09">{{ task.points }}</span>
+                  <br />
+                </span>
+              </div>
+              <div class="tag6">
+                <span class="home-text05">
+                  <span>{{ task.assigned_to.name }}</span>
+                  <br />
+                </span>
+              </div>
+            </div>
+            
+            {% endfor %}
+            
+            
+          </div>
+          <a href="{% url 'delete_project' tl.id %}" id="end_pro_button">End Project</a>
+
+        {% else %}
+        <h1 class="add-team-members-text1">Start Creating your Project!</h1>
+        <form class="add-team-members-form" action="create_project" method = "POST">
+          {% csrf_token %}
+          <label class="add-team-members-text2">Title of Project:</label>
+          <input type="text" class="add-team-members-textinput input" name = 'title' id='title'>
+          <label class="add-team-members-text3">Confirm userid:</label>
+          <input
+          type="text"
+          class="add-team-members-textinput1 input"
+          name = 'userid'
+          id = 'userid'
+        />
+          <button type="submit" class="add-team-members-button1 button">
+            Create
+          </button>
+        </form>
+        {% endif %}
+          
+          <div class="home-container10">
+            <span class="home-text14">Name:</span>
+            <span class="home-text16">Team Name:</span>
+            <span class="home-text17">Userid:</span>
+            <span class="home-text18">Email:</span>
+            <span class="home-text19">{{ tl.name }}</span>
+            <span class="home-text21">{{ tl.team_name }}</span>
+            <span class="home-text22">{{ tl.email }}</span>
+            <span class="home-text23">{{ tl.user_id }}</span>
+          </div>
+          <div class="home-container11"></div>
+          <h1 class="home-text24">Profile</h1>
+          
+          <h1 class="tag1">Team members:</h1>
+          <a href="{% url 'logout'%}" id="button">LogOut</a>
+        </div>
+    </div>
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+</html>

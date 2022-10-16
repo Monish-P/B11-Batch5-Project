@@ -1,0 +1,135 @@
+.home-container {
+    width: 100%;
+    display: flex;
+    overflow: auto;
+    min-height: 100vh;
+    align-items: flex-start;
+    border-color: var(--dl-color-gray-black);
+    border-width: 1px;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  .home-container1 {
+    top: 1px;
+    left: 1px;
+    width: 100%;
+    border: 2px dashed rgba(120, 120, 120, 0.4);
+    height: 43px;
+    display: flex;
+    position: absolute;
+    align-items: flex-start;
+    background-color: #6200ee;
+  }
+  .home-container2 {
+    top: 43px;
+    left: 1px;
+    width: 198px;
+    height: 957px;
+    display: flex;
+    position: absolute;
+    align-items: center;
+    border-color: rgba(120, 120, 120, 0.4);
+    border-style: solid;
+    border-width: 2px;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  .home-link {
+    top: 26px;
+    left: 18px;
+    color: var(--dl-color-gray-black);
+    position: absolute;
+    font-size: 25px;
+    text-align: center;
+    text-transform: capitalize;
+  }
+  .home-text {
+    top: 88px;
+    left: 10px;
+    color: #6200EE;
+    position: absolute;
+    font-size: 25px;
+    text-align: center;
+    text-transform: capitalize;
+    text-decoration: underline;
+  }
+  .home-icon {
+    width: 24px;
+    height: 24px;
+  }
+  .home-button {
+    top: 45px;
+    color: rgb(255, 255, 255);
+    right: 0px;
+    text-align: center;
+    width: 102px;
+    height: 44px;
+    position: absolute;
+    font-size: 19px;
+    background-color: rgb(238, 0, 4);
+    border: #000000;
+    border-style: solid;
+  }
+  .home-form {
+    top: 157px;
+    left: 253px;
+    width: 788px;
+    height: 447px;
+    position: absolute;
+    background-color: var(--dl-color-gray-white);
+  }
+  .home-text1 {
+    top: 52px;
+    left: 45px;
+    color: rgb(98, 0, 238);
+    position: absolute;
+    font-size: 30px;
+  }
+  .home-text2 {
+    top: 210px;
+    left: 47px;
+    color: rgb(98, 0, 238);
+    position: absolute;
+    font-size: 30px;
+  }
+  .home-text3 {
+    top: 158px;
+    left: 48px;
+    color: rgb(98, 0, 238);
+    position: absolute;
+    font-size: 30px;
+  }
+  .home-text4 {
+    top: 104px;
+    left: 46px;
+    color: rgb(98, 0, 238);
+    position: absolute;
+    font-size: 30px;
+  }
+  .home-textinput {
+    top: 53px;
+    left: 220px;
+    position: absolute;
+  }
+  .home-textinput1 {
+    top: 211px;
+    left: 219px;
+    position: absolute;
+  }
+  .home-textinput2 {
+    top: 158px;
+    left: 219px;
+    position: absolute;
+  }
+  .home-textinput3 {
+    top: 103px;
+    left: 220px;
+    position: absolute;
+  }
+  .home-button1 {
+    left: 353px;
+    color: white;
+    bottom: 105px;
+    position: absolute;
+    background-color: #6200ee;
+  }

@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Create Team</title> 
+<style>
+
+.createbox
+{
+    position:absolute;
+    top:35%;
+    right:80%;
+    background-color:Blue;
+    border:none;
+    padding:6px 10px;
+    text-decoration:none;
+    margin:1px 1px;
+    color:white;
+    font:Arial;
+}
+.details
+{
+    position:absolute;
+    right:70%;
+    width:12%;
+    border:none;
+    text-decoration:none;
+    background:#F0F0F0;
+}
+.home-container02 {
+        top: 0px;
+        right: 1px;
+        width: 198px;
+        height: 957px;
+        display: flex;
+        position: absolute;
+        align-items: center;
+        border-color: rgba(120, 120, 120, 0.4);
+        border-style: solid;
+        border-width: 2px;
+        flex-direction: column;
+        justify-content: flex-start;
+        }
+        .home-link {
+  top: 26px;
+  left: 18px;
+  color: rgb(2, 2, 2);
+  position: inherit;
+  font-size: 25px;
+  text-align: center;
+  text-transform: capitalize;
+}
+.home-text {
+  top: 88px;
+  left: 10px;
+  color: #6200ee;
+  position: inherit;
+  font-size: 25px;
+  text-align: center;
+  text-transform: capitalize;
+  text-decoration: underline;
+}
+
+</style>
+</head>
+<body>
+    <div class="home-container02">
+        <a
+          href="{% url 'manager_dashboard' %}"
+          rel="noreferrer noopener"
+          class="home-link"
+        >
+          Dashboard
+        </a>
+        <a href="{% url 'create_team_page' %}"
+        rel="noreferrer noopener" class="home-text">Create Team</a>
+      </div>
+    <form name="create form" method="POST" action="{% url 'create_team' %}">
+        {% csrf_token %}
+        <b><font face="Arial">Team Name:</font></b>
+        <input class="details" type="text" name="team_name"><br><br>
+        <b><font face="Arial">Team Leader Name:</font></b> 
+        <input class="details" type="text" name="name" ><br><br>
+        <b><font face="Arial">Team Leader UserID:</font></b> 
+        <input class="details" type="text" name="userid" ><br><br>
+        <b><font face="Arial">Team Leader Password:</font></b> 
+        <input class="details" type="password" name="password" ><br><br>
+        <b><font face="Arial">Team Leader Email:</font></b> 
+        <input class="details" type="email" name="email"><br><br>
+        <button class="createbox" type="submit">Create</button>
+    </form>
+    
+ 
+</body>
+</html>

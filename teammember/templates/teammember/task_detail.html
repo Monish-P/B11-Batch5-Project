@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{%static 'teammember/task_detail.css'%}">
+
+</head>
+<body>
+    <div>
+        <div class="home-container">
+          <div class="home-container1"></div>
+          
+          <h1 class="home-text1">Task Id:</h1>
+          <h1 class="home-text2">Description:</h1>
+          <h1 class="home-text3">Task Name:</h1>
+          <span class="home-text4">{{ task.id }}</span>
+          <span class="home-text5">{{ task.points }}</span>
+          <span class="home-text6">{{ task.name }}</span>
+          <h1 class="home-text7">Points:</h1>
+          <div class="home-container3">
+            <p class="home-text8">{{ task.description }}</p>
+        </div>
+          {% if task.status == 0 %}
+          <a class="home-button1 button" href = "{% url 'send_approval' tm.id task.id %}">Send for Approval</a>
+          {% endif %}
+        </div>
+      </div>
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+</html>
