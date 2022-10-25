@@ -47,8 +47,7 @@ urlpatterns = [
     path('team_details/<int:pro_id>/delete_team/<int:tl_id>/',mviews.delete_team,name = 'delete_team'),
     path('create_team_page',mviews.return_create_team_page,name = 'create_team_page'),
     path('create_team',mviews.create_team,name = 'create_team'),
-
-
+    path('about',mviews.about,name = 'about'),
 
 
 

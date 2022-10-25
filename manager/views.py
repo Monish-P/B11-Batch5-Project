@@ -111,5 +111,6 @@ def create_team(request):
     team_leader.objects.create(name = name, team_name = team_name, user_id = userid,password = password,email = email)
     return redirect('manager_dashboard')
 
-
+def about(request):
+    return render(request,'manager/about.html')
 
