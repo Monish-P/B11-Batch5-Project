@@ -48,6 +48,7 @@ urlpatterns = [
     path('create_team_page',mviews.return_create_team_page,name = 'create_team_page'),
     path('create_team',mviews.create_team,name = 'create_team'),
     path('about',mviews.about,name = 'about'),
+    path('bar_chart',mviews.bar_chart,name='bar_chart')
 
 
 

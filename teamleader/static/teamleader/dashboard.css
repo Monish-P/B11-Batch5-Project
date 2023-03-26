@@ -507,3 +507,11 @@
   border: #000000;
   border-style: solid;
 }
+
+#progress-bar {
+  position: relative;
+  width: 70%;
+  height: 40px;
+  top: 107px;
+  left: 340px;
+}

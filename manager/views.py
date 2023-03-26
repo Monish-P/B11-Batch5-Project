@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect,HttpResponse
 from teamleader.models import team_leader,team_member,project,task
 from django.contrib.auth import logout
+from django.http import JsonResponse
 # Create your views here.
 def login(request):
     return render(request,'manager/login.html')
@@ -53,12 +54,19 @@ def team_leader_dashboard(request,id):
     tl = team_leader.objects.get(id=id)
     if project.objects.filter(project_teamleader = tl).exists():
         pro = project.objects.get(project_teamleader = tl)
+        try:
+            progress = (pro.no_of_tasks_completed * 100) / (pro.no_of_tasks_completed + pro.no_of_pending_tasks)
+        except Exception:
+            progress = 0
+        pro.progress = progress
+        pro.save()
         context = {
         'tl': tl,
         'tms': team_member.objects.filter(team_of = tl),
         'project': pro,
         'pend_tasks': task.objects.filter(task_of = pro, status = 0),
-        'comp_tasks': task.objects.filter(task_of = pro, status = 2)
+        'comp_tasks': task.objects.filter(task_of = pro, status = 2),
+        'progress': int(progress),
 
         }
     else:
@@ -82,6 +90,7 @@ def team_member_dashboard(request,id):
     except Exception:
         eff = 0
     pro = project.objects.get(project_teamleader = tm.team_of)
+    tms = team_member.objects.order_by('-total_points')[:5]
     context = {
         'tasks': task.objects.filter(assigned_to = tm),
         'tm': tm,
@@ -90,13 +99,25 @@ def team_member_dashboard(request,id):
         'data':data,
         'pdata': pdata,
         'plabels': plabels,
-        'eff': eff
+        'eff': eff,
+        'tms': tms,
     }
     return render(request,'teammember/dashboard.html',context)
-
+def bar_chart(request):
+    labels = []
+    data = []
+    projects = project.objects.all()
+    for pro in projects:
+        labels.append(pro.project_teamleader.team_name)
+        data.append(pro.progress)
+    return JsonResponse(data={
+        'labels': labels,
+        'data': data
+    })
 def manager_dashboard(request):
+    projects = project.objects.all()
     context = {
-        'projects': project.objects.all(),
+        'projects': projects,
         'tms': team_member.objects.all()
     }
     return render(request,'manager/dashboard.html',context)

@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'manager',
     'teamleader',
-    'teammember'
+    'teammember',
+    'chartjs',
 ]
 
 MIDDLEWARE = [

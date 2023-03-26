@@ -384,3 +384,91 @@
   flex-direction:column;
   align-items: flex-start;
 }
+
+
+.leaderboard {
+  top: 140px;
+  right: 5px;
+  width: 17%;
+  height: 196px;
+  display: flex;
+  position: absolute;
+  align-items: flex-start;
+  flex-direction: column;
+  background-color: #ffffff;
+  overflow: auto;
+}
+
+.leaderboard-row {
+  width: 100%;
+  height: 45px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  border-color: #000000;
+  border-style: double;
+  border-width: 2px;
+  justify-content: flex-start;
+  background-color: #ffffff;
+}
+
+.leaderboard-sno {
+  flex: 0 0 auto;
+  width: 25px;
+  height: 100%;
+  display: flex;
+  align-items: flex-start;
+  border-color: #000000;
+  border-style: double;
+  border-width: 2px;
+}
+
+.leaderboard-name {
+  flex: 0 0 auto;
+  width: 175px;
+  height: 100%;
+  display: flex;
+  align-items: flex-start;
+  border-color: #000000;
+  border-style: double;
+  border-width: 2px;
+  justify-content: flex-start;
+}
+
+.leaderboard-points {
+  flex: 0 0 auto;
+  width: 42px;
+  height: 100%;
+  display: flex;
+  align-items: flex-start;
+  border-color: #000000;
+  border-style: double;
+  border-width: 2px;
+}
+
+.leaderboard-name-title {
+  top: 4px;
+  left: 65px;
+  color: rgb(255, 255, 255);
+  position: relative;
+  font-size: 30px;
+}
+
+.leaderboard-points-title {
+  top: 4px;
+  left: 210px;
+  color: rgb(255, 255, 255);
+  position: relative;
+  font-size: 30px;
+}
+
+.leaderboard-name-context {
+  color: rgb(98, 0, 238);
+  font-size: 22px;
+}
+
+.leaderboard-title {
+  position: absolute;
+  top: 100px;
+  right: 68px;
+}

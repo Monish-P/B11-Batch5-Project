@@ -8,11 +8,13 @@
     <title>Dashboard</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="{%static 'teamleader/dashboard.css'%}">
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 </head>
 <body>
     <div>
-        <div class="home-container">
           <div class="home-container01"></div>
           <div class="home-container02">
             <a
@@ -152,6 +154,10 @@
             
           </div>
           <a href="{% url 'delete_project' tl.id %}" id="end_pro_button">End Project</a>
+          <h3 style="position:relative; top: 148px; left: 210px;">Progress:</h3>
+          <div id="progress-bar" class="progress">
+            <div class="progress-bar" role="progressbar" aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="0" style="background-color:rgb(98, 0, 238); color:black; font-size:larger">{{ progress }} % </div>
+          </div>
 
         {% else %}
         <h1 class="add-team-members-text1">Start Creating your Project!</h1>
@@ -171,7 +177,6 @@
           </button>
         </form>
         {% endif %}
-          
           <div class="home-container10">
             <span class="home-text14">Name:</span>
             <span class="home-text16">Team Name:</span>
@@ -187,11 +192,25 @@
           
           <h1 class="tag1">Team members:</h1>
           <a href="{% url 'logout'%}" id="button">LogOut</a>
-        </div>
+
+          
+        
     </div>
-      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script>
+      $(document).ready(function() {
+    var progress_bar = $("#progress-bar .progress-bar");
+    var interval = setInterval(function() {
+        var current_value = progress_bar.attr("aria-valuenow");
+        if (current_value > 100) {
+            clearInterval(interval);
+        } else {
+            progress_bar.attr("aria-valuenow", current_value);
+            progress_bar.css("width", current_value + "%");
+        }
+    }, 100);
+    });
+    </script>
+      
 
 </body>
 </html>

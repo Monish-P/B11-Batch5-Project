@@ -61,6 +61,8 @@ def add_tasks(request,id):
     pro = project.objects.get(project_teamleader = tl)
     task.objects.create(name = name,description = desc, task_of = pro, points = points,assigned_to = team_member.objects.get(user_id=\
         assigned_to))
+    pro.no_of_pending_tasks += 1
+    pro.save()
     return redirect('team_leader_dashboard',id)
     
 def return_approve_page(request,id):
@@ -76,6 +78,11 @@ def approve_task(request,id,task_id):
     tm.no_of_tasks_accepted+=1
     tm.save()
     t.save()
+    tl = team_leader.objects.get(id = id)
+    pro = project.objects.get(project_teamleader = tl)
+    pro.no_of_pending_tasks -= 1
+    pro.no_of_tasks_completed += 1
+    pro.save()
     return redirect('approve_page',id)
 
 def disapprove_task(request,id,task_id):

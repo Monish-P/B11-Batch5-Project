@@ -81,6 +81,43 @@
             
           {% endfor %}
         </div>
+
+
+        <div class="leaderboard">
+          <div class="home-container04">
+            <span class="leaderboard-points-title">P</span>
+            <span class="leaderboard-name-title">Name</span>
+          </div>
+
+          {% for tm in tms %}
+          <div class="leaderboard-row">
+            <div class="leaderboard-sno">
+              <span class="home-text05">
+                <span>{{ forloop.counter }}</span>
+                <br />
+              </span>
+            </div>
+            <div class="leaderboard-name">
+              <span
+                
+                class="leaderboard-name-context"
+              >
+                {{ tm.name }}
+            </span>
+            </div>
+            <div class="leaderboard-points">
+              <span class="home-text08">
+                <span class="home-text09">{{ tm.total_points }}</span>
+                <br />
+              </span>
+            </div>
+            
+
+          </div>
+          
+          
+        {% endfor %}
+      </div>
           
           <div class="home-container10">
             <span class="home-text14">Name:</span>
@@ -108,10 +145,12 @@
           <span class="home-text31">{{ pro.name }}</span>
           <h1 class="home-text32">MyTasks:</h1>
           <a href="{% url 'logout'%}" id="button">LogOut</a>
+          <h2 class="leaderboard-title">LeaderBoard</h2>
           <div class="overview">
             <h2 style = "color:#6200ee;">Tasks Progress</h2> 
             <canvas id="pie-chart"></canvas>
           </div>
+        
           <!--
           <div class="performance">
             <h2 style = "color:#6200ee;">My Performance</h2>

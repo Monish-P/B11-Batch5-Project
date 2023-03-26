@@ -35,6 +35,7 @@ class project(models.Model):
     no_of_pending_tasks = models.IntegerField(default = 0)
     no_of_tasks_completed = models.IntegerField(default = 0)
     project_teamleader = models.OneToOneField(team_leader,on_delete = models.CASCADE)
+    progress = models.IntegerField(default = 0)
 
     def __str__(self):
         return self.name
