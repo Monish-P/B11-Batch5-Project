@@ -17,6 +17,7 @@ def check_login(request):
         else:
             return HttpResponse('Invalid userid or password!')
     elif team_member.objects.filter(user_id=userid).exists():
+
         tm = team_member.objects.get(user_id=userid)
         if tm.password == password:
             if tm.is_team_assigned:
@@ -69,11 +70,27 @@ def team_leader_dashboard(request,id):
 
 def team_member_dashboard(request,id):
     tm = team_member.objects.get(id = id)
+    comp = task.objects.filter(assigned_to = tm,status = 2).count()
+    appr = task.objects.filter(assigned_to = tm,status = 1).count()
+    pend = task.objects.filter(assigned_to = tm,status = 0).count()
+    data = [comp,appr,pend]
+    labels = ["completed","need to be approved","pending"]
+    pdata = [tm.no_of_tasks_accepted,tm.no_of_tasks_rejected]
+    plabels = ["Tasks Accepted","Tasks Rejected"]
+    try:
+        eff = (tm.no_of_tasks_accepted * 100) / (tm.no_of_tasks_accepted+tm.no_of_tasks_rejected)
+    except Exception:
+        eff = 0
     pro = project.objects.get(project_teamleader = tm.team_of)
     context = {
         'tasks': task.objects.filter(assigned_to = tm),
         'tm': tm,
-        'pro': pro
+        'pro': pro,
+        'labels':labels,
+        'data':data,
+        'pdata': pdata,
+        'plabels': plabels,
+        'eff': eff
     }
     return render(request,'teammember/dashboard.html',context)
 

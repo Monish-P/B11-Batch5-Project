@@ -1,5 +1,5 @@
 
-from email.policy import default
+
 from django.db import models
 # Create your models here.
 
@@ -22,6 +22,8 @@ class team_member(models.Model):
     total_points = models.IntegerField(default = 0)
     is_team_assigned = models.BooleanField(default=False)
     team_of = models.ForeignKey(team_leader,on_delete = models.CASCADE,blank = True, null = True)
+    no_of_tasks_accepted = models.IntegerField(default = 0)
+    no_of_tasks_rejected = models.IntegerField(default = 0)
 
     def __str__(self):
         return self.name

@@ -59,24 +59,30 @@ def add_tasks(request,id):
     desc = request.POST.get('description')
     tl = team_leader.objects.get(id=id)
     pro = project.objects.get(project_teamleader = tl)
-    task.objects.create(name = name,description = desc, task_of = pro, points = points,assigned_to = team_member.objects.get(user_id = assigned_to))
+    task.objects.create(name = name,description = desc, task_of = pro, points = points,assigned_to = team_member.objects.get(user_id=\
+        assigned_to))
     return redirect('team_leader_dashboard',id)
     
 def return_approve_page(request,id):
     tl = team_leader.objects.get(id = id)
-    return render(request,'teamleader/approve_tasks.html',context={'tl':tl,'tasks':task.objects.filter(task_of = project.objects.get(project_teamleader = tl),status = 1)})
+    return render(request,'teamleader/approve_tasks.html',context={'tl':tl,'tasks':task.objects.filter(task_of = \
+        project.objects.get(project_teamleader = tl),status = 1)})
 
 def approve_task(request,id,task_id):
     t = task.objects.get(id = task_id)
     tm = t.assigned_to
     tm.total_points += t.points
     t.status = 2
+    tm.no_of_tasks_accepted+=1
     tm.save()
     t.save()
     return redirect('approve_page',id)
 
 def disapprove_task(request,id,task_id):
     t = task.objects.get(id = task_id)
+    tm = t.assigned_to
+    tm.no_of_tasks_rejected+=1
     t.status = 0
+    tm.save()
     t.save()
     return redirect('approve_page',id)

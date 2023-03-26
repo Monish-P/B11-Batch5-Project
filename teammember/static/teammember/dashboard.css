@@ -66,6 +66,7 @@
   align-items: flex-start;
   flex-direction: column;
   background-color: #ffffff;
+  overflow: auto;
 }
 .home-container04 {
   width: 100%;
@@ -357,4 +358,29 @@
   background-color: rgb(238, 0, 4);
   border: #000000;
   border-style: solid;
+}
+
+.overview {
+  top: 950px;
+  left: 200px;
+  width: 40%;
+  height: 52%;
+  display: flex;
+  margin: auto;
+  position: absolute;
+  border: solid black;
+  flex-direction:column;
+  align-items: flex-start;
+}
+.performance {
+  top: 950px;
+  left: 780px;
+  width: 40%;
+  height: 52%;
+  display: flex;
+  margin: auto;
+  position: absolute;
+  border: solid black;
+  flex-direction:column;
+  align-items: flex-start;
 }
