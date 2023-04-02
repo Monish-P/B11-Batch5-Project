@@ -24,6 +24,8 @@ class team_member(models.Model):
     team_of = models.ForeignKey(team_leader,on_delete = models.CASCADE,blank = True, null = True)
     no_of_tasks_accepted = models.IntegerField(default = 0)
     no_of_tasks_rejected = models.IntegerField(default = 0)
+    phone_num = models.CharField(max_length=15)
+    otp_entered = models.CharField(max_length=100,null=True,blank=True)
 
     def __str__(self):
         return self.name

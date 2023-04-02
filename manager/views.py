@@ -2,7 +2,14 @@ from django.shortcuts import render,redirect,HttpResponse
 from teamleader.models import team_leader,team_member,project,task
 from django.contrib.auth import logout
 from django.http import JsonResponse
+from twilio.rest import Client
+import random
 # Create your views here.
+
+ACCOUNT_SID='ACeaf344cbda950e2aa828c052aa811fa6'
+AUTH_TOKEN='f6721f7f085a28b5a60aaa7fce9aef26'
+TWILIO_PHONE_NUMBER='+15856693106'
+
 def login(request):
     return render(request,'manager/login.html')
 
@@ -43,11 +50,14 @@ def create_teammember(request):
     email = request.POST.get('email')
     password = request.POST.get('password')
     cpassword = request.POST.get('cpassword')
+    phone_num = request.POST.get('phone_num')
     if userid[:2] == 'tl' or team_member.objects.filter(user_id=userid).exists():
         return HttpResponse("Please Choose other userid")
     if password != cpassword:
         return HttpResponse("Please enter correct password")
-    team_member.objects.create(name=name, user_id=userid,password=password,email=email)
+    if team_member.objects.filter(phone_num=phone_num).exists():
+        return HttpResponse("User with that phone number already exists")
+    team_member.objects.create(name=name, user_id=userid,password=password,email=email,phone_num=phone_num)
     return render(request,'teammember/default.html')
 
 def team_leader_dashboard(request,id):
@@ -151,4 +161,45 @@ def create_team(request):
 
 def about(request):
     return render(request,'manager/about.html')
+
+def return_forgot_password_page(request):
+    return render(request,'manager/forgot_password.html')
+
+def check_phone_num(request):
+    inp_phone = request.POST.get("inp_phone")
+
+    if team_member.objects.filter(phone_num=inp_phone).exists():
+        tm = team_member.objects.get(phone_num=inp_phone)
+        otp=random.randint(1000,9999)
+        tm.otp_entered = otp
+        tm.save()
+        client= Client(ACCOUNT_SID,AUTH_TOKEN)
+        message=client.messages.create(body=f'your otp is:{otp}',from_=f'{TWILIO_PHONE_NUMBER}',to=f'+91{inp_phone}')
+        return render(request,'manager/otp.html',context={"tm":tm})
+    else:
+        return HttpResponse('User with phone number does not exist')
+
+def check_otp(request,id):
+    otp = request.POST.get("otp")
+    tm = team_member.objects.get(id=id)
+    if otp == tm.otp_entered:
+        return render(request,'manager/change_password.html',context={"tm":tm})
+    else:
+        return HttpResponse('Invalid OTP')
+
+def change_password(request,id):
+    new_pass = request.POST.get("new_password")
+    c_pass = request.POST.get("c_password")
+
+    if new_pass == c_pass:
+        tm = team_member.objects.get(id=id)
+        tm.password = new_pass
+        tm.save()
+        return redirect('login')
+    else:
+        return HttpResponse('Both Passwords doesnt match')
+
+
+
+
 

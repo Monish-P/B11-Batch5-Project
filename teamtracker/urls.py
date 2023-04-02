@@ -48,7 +48,13 @@ urlpatterns = [
     path('create_team_page',mviews.return_create_team_page,name = 'create_team_page'),
     path('create_team',mviews.create_team,name = 'create_team'),
     path('about',mviews.about,name = 'about'),
-    path('bar_chart',mviews.bar_chart,name='bar_chart')
+    path('bar_chart',mviews.bar_chart,name='bar_chart'),
+    path('forgot_password',mviews.return_forgot_password_page,name='forgot_password'),
+    path('check_phone_num',mviews.check_phone_num,name='check_phone_num'),
+    path('check_otp/<int:id>/',mviews.check_otp,name='check_otp'),
+    path('check_otp/<int:id>/change_password',mviews.change_password,name='change_password'),
+
+
 
 
 
